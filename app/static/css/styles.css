@@ -1,0 +1,153 @@
+/* General Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', 'Helvetica', sans-serif;
+    background-color: #d6eaf8; /* Light blue background */
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* Header Styles */
+.header {
+    display: flex;
+    align-items: center;
+    background-color: #5dade2; /* Soft blue */
+    color: white;
+    padding: 10px 15px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.header h1 {
+    font-size: 1.5rem;
+    font-weight: normal;
+}
+
+/* Chat Container */
+.chat-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    overflow: hidden;
+}
+
+/* Chat Box */
+.chat-box {
+    flex: 1;
+    background: #f8f9f9; /* Soft white-blue */
+    border-radius: 12px;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.chat-box::-webkit-scrollbar {
+    width: 5px;
+}
+
+.chat-box::-webkit-scrollbar-thumb {
+    background-color: #a9cce3; /* Light blue scrollbar */
+    border-radius: 2.5px;
+}
+
+/* Messages */
+.message {
+    max-width: 70%;
+    padding: 15px 20px; /* Extra padding inside messages */
+    border-radius: 18px;
+    line-height: 1.5;
+    word-wrap: break-word;
+    font-size: 0.9rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* User Messages */
+.user-message {
+    align-self: flex-end;
+    background-color: #aed6f1; /* Light blue */
+    color: #154360; /* Dark blue text */
+    border-radius: 18px 18px 0 18px;
+    text-align: left;
+}
+
+/* AI Messages */
+.ai-message {
+    align-self: flex-start;
+    background-color: #d6eaf8; /* Very light blue */
+    color: #1a5276; /* Slightly darker text */
+    border-radius: 18px 18px 18px 0;
+    text-align: left;
+    border: 1px solid #aed6f1; /* Subtle border */
+}
+
+/* Error Messages */
+.error-message {
+    align-self: center;
+    background-color: #f5b7b1; /* Light red for errors */
+    color: #943126;
+    border-radius: 12px;
+    padding: 10px;
+    text-align: center;
+    max-width: 80%;
+    margin: auto;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Input Area */
+.input-area {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #fff;
+    border-top: 1px solid #ccc;
+    gap: 10px;
+}
+
+textarea {
+    flex: 1;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 15px;
+    font-size: 1rem;
+    outline: none;
+    background-color: #f0f0f0;
+    resize: none;
+    height: 40px;
+}
+
+textarea::placeholder {
+    color: #999;
+}
+
+textarea:focus {
+    background-color: #fff;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #5dade2; /* Soft blue button */
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #2e86c1; /* Slightly darker blue */
+}

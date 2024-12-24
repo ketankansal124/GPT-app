@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPT Chat</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <header class="header">
+        <img src="{{ url_for('static', filename='images/image.png') }}" alt="Logo" class="logo">
+        <h1>GPT Chat</h1>
+    </header>
+
+    <main class="chat-container">
+        <section class="chat-box" id="chat-box">
+            <!-- AI's initial message -->
+            <div class="ai-message">
+                <p>Welcome! How can I assist you today?</p>
+            </div>
+        </section>
+        <section class="input-area">
+            <textarea id="user-input" placeholder="Type a message..."></textarea>
+            <button id="send-button">
+                <span>Send</span>
+            </button>
+        </section>
+    </main>
+
+    <script>
+        document.getElementById('send-button').addEventListener('click', function () {
+            const userInput = document.getElementById('user-input');
+            const message = userInput.value.trim();
+
+            if (!message) return;
+
+            // Add user's message
+            const chatBox = document.getElementById('chat-box');
+            chatBox.innerHTML += `
+                <div class="user-message">
+                    <p>${message}</p>
+                </div>
+            `;
+            userInput.value = '';
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            // Fetch AI's response
+            fetch('/api/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.response) {
+                        chatBox.innerHTML += `
+                            <div class="ai-message">
+                                <p>${data.response}</p>
+                            </div>
+                        `;
+                    } else {
+                        chatBox.innerHTML += `
+                            <div class="error-message">
+                                <p>Error: ${data.error || "Unable to fetch a response."}</p>
+                            </div>
+                        `;
+                    }
+                    chatBox.scrollTop = chatBox.scrollHeight;
+                })
+                .catch(() => {
+                    chatBox.innerHTML += `
+                        <div class="error-message">
+                            <p>Connection error. Please try again.</p>
+                        </div>
+                    `;
+                });
+        });
+    </script>
+</body>
+</html>
